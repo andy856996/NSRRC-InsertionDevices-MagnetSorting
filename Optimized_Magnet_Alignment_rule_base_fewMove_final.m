@@ -35,10 +35,10 @@ disp(['(origin) out of the criterion(number) : ' num2str(length(find(arrary_valu
 disp(['(origin) standard deviation (ABS) : ' num2str(std(abs(arrary_value_mod)))])
 
 gradient_new = [];
-
+gradient_cell{length(gradientAndIdx_swap)+1} = 0;
+%% ----------------------> the magnet you want to move
 idx_current = find(arrary_value_mod > 0.5 | arrary_value_mod < -0.5);
 idx_last = idx_current - 1;
-%% ----------------------> the magnet you want to move
 idx = unique([idx_current idx_last]); 
 %% start move magnet
 idx_current_continuousSequence = continuousSequence2cell(idx_current);
@@ -127,9 +127,6 @@ view_exchange_process = 1; % if you want to see the process of change magnet ,th
 disp(['out of the criterion(number) : ' num2str(length(find(arrary_value_mod > 0.5 | arrary_value_mod < -0.5)))]);
 disp(['standard deviation (ABS) : ' num2str(std(abs(arrary_value_mod)))]);
 %% plot the figure
-figure;subplot(2,1,1);plot(arrary,'-o');yline(0.5);yline(-0.5);xlim([1 length(arrary)]);
-xlim([1 length(arrary)]);ylim([-2 2]);title('Origin data');set(gca,'FontSize',20,'FontName','Times New Roman');
-
 hold on;subplot(2,1,2);plot([arrary(1) arrary_value_mod arrary(end)],'-o');
 yline(0.5);yline(-0.5);xlim([1 length(arrary)]);ylim([-2 2]);title('Magnet sorting w/ rule base');
 set(gca,'FontSize',20,'FontName','Times New Roman');
@@ -146,5 +143,5 @@ for i = 1:length(magnet_locate)
         end
     end
 end
-figure;plot([arrary(1) cumsum([init_value arr_verify]) arrary(end)],'-o');yline(0.5);yline(-0.5);xlim([1 length(arrary_value_mod)]);
-hold on;plot([arrary(1) arrary_value_mod arrary(end)],'-o');
+% figure;plot([arrary(1) cumsum([init_value arr_verify]) arrary(end)],'-o');yline(0.5);yline(-0.5);xlim([1 length(arrary_value_mod)]);
+% hold on;plot([arrary(1) arrary_value_mod arrary(end)],'-o');
